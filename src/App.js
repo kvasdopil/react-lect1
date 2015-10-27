@@ -24,7 +24,12 @@ export default class App extends React.Component {
       <div id="users" style={{float:'right'}}>
         Список комнат:
         <ul>
-          {data.rooms.map((name) => {return <li>{name}</li>})}
+          {data.rooms.map((name) => {
+            if(name == data.room)
+              return <li><b>[ {name} ]</b></li>
+
+            return <li>{name}</li>
+          })}
         </ul>
       </div>
       <div id="messages" style={{overflowY: 'auto', height: '300px'}}>
