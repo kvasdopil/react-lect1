@@ -1,6 +1,6 @@
 import React from 'react';
-import Person from './components/Person'
-import PersonList from './components/PersonList'
+import Rooms from './components/Rooms'
+import Chat from './components/Chat'
 
 export default class App extends React.Component {
   render() {
@@ -21,20 +21,8 @@ export default class App extends React.Component {
 
     return <div id='app'>
       Вы вошли как <strong>{data.userName}</strong>
-      <div id="users" style={{float:'right'}}>
-        Список комнат:
-        <ul>
-          {data.rooms.map((name) => {
-            if(name == data.room)
-              return <li><b>[ {name} ]</b></li>
-
-            return <li>{name}</li>
-          })}
-        </ul>
-      </div>
-      <div id="messages" style={{overflowY: 'auto', height: '300px'}}>
-        {data.messages.map((msg) => <p>{msg.from}: {msg.msg}</p>)}
-      </div>
+      <Rooms room={data.room} items={data.rooms} />
+      <Chat items={data.messages}/>
       <div>
         <input type="text" />
         <button>Отправить</button>
