@@ -1,12 +1,15 @@
 import React from 'react';
-import Test from './components/Test'
+import Person from './components/Person'
 
 export default class App extends React.Component {
   render() {
     return <div>
-      <Test />
-      <Test />
-      <Test />
+      <ul>
+        <Person name="Кайл" />
+        <Person name="Картман" />
+        <Person name="Стен"/>
+        <Person name="Кенни"/>
+      </ul>
     </div>
   }
 }
