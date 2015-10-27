@@ -4,11 +4,40 @@ import PersonList from './components/PersonList'
 
 export default class App extends React.Component {
   render() {
-    return <PersonList title="Список щщей">
-      <Person name="Кайл" />
-      <Person name="Картман" />
-      <Person name="Стен"/>
-      <Person name="Кенни"/>
-    </PersonList>
+    return <div id='app'>
+      Вы вошли как <strong>Загадочный ловелас</strong>
+      <div id="users" style={{float:'right'}}>
+        Список комнат:
+        <ul>
+          <li>Общая</li>
+          <li>Кайл</li>
+          <li>Эрик</li>
+          <li>Кенни</li>
+          <li>Анатолий Вассерман</li>
+        </ul>
+      </div>
+      <div id="messages" style={{overflowY: 'auto', height: '300px'}}>
+        <p>Кайл: всем привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+        <p>Вы: и тебе привет</p>
+      </div>
+      <div>
+        <input type="text" />
+        <button>Отправить</button>
+      </div>
+    </div>
   }
 }
