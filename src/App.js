@@ -4,35 +4,31 @@ import PersonList from './components/PersonList'
 
 export default class App extends React.Component {
   render() {
+    var data = {
+      userName: 'Загадочный ловелас',
+      room: 'Общий чат',
+      rooms: ['Общий чат', 'Вася', 'Петя', 'Маша', 'Ираида Петровна'],
+      messages: [
+        {from: 'Вася', msg: 'Привет'},
+        {from: 'Вася', msg: 'Привет'},
+        {from: 'Ловелас', msg: 'Медвед'},
+        {from: 'Вася', msg: 'Привет'},
+        {from: 'Вася', msg: 'Привет'},
+        {from: 'Вася', msg: 'Привет'},
+        {from: 'Вася', msg: 'Привет'}
+      ]
+    };
+
     return <div id='app'>
-      Вы вошли как <strong>Загадочный ловелас</strong>
+      Вы вошли как <strong>{data.userName}</strong>
       <div id="users" style={{float:'right'}}>
         Список комнат:
         <ul>
-          <li>Общая</li>
-          <li>Кайл</li>
-          <li>Эрик</li>
-          <li>Кенни</li>
-          <li>Анатолий Вассерман</li>
+          {data.rooms.map((name) => {return <li>{name}</li>})}
         </ul>
       </div>
       <div id="messages" style={{overflowY: 'auto', height: '300px'}}>
-        <p>Кайл: всем привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
-        <p>Вы: и тебе привет</p>
+        {data.messages.map((msg) => <p>{msg.from}: {msg.msg}</p>)}
       </div>
       <div>
         <input type="text" />
