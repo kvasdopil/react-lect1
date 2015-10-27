@@ -1,6 +1,6 @@
 import React from 'react';
-export default class Person extends React.Component {
-  render() {
-    return <li>[boy] {this.props.name}</li>
-  }
+
+export default function(props)
+{
+  return <li>[boy] {props.name}</li>
 }
