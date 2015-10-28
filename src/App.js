@@ -20,13 +20,8 @@ export default class App extends React.Component {
     };
 
     return <div id='app'>
-      Вы вошли как <strong>{data.userName}</strong>
       <Rooms room={data.room} items={data.rooms} />
-      <Chat items={data.messages}/>
-      <div>
-        <input type="text" />
-        <button>Отправить</button>
-      </div>
+      <Chat items={data.messages} user={data.userName}/>
     </div>
   }
 }
