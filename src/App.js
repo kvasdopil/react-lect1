@@ -24,9 +24,15 @@ export default class App extends React.Component {
     this.server.onMessage = (f,c,m) => this.handleMessage(f,c,m);
   }
 
-  onSend(msg)
+  send(msg)
   {
     this.server.send(this.state.userName, this.state.room, msg);
+  }
+
+  selectRoom(room)
+  {
+    console.log('room ', room);
+    this.setState({room});
   }
 
   handleMessage(from, chat, msg)
@@ -39,8 +45,8 @@ export default class App extends React.Component {
 
   render() {
     return <div id='app'>
-      <Rooms room={this.state.room} items={this.state.rooms} />
-      <Chat items={this.state.messages} user={this.state.userName} onSend={(m) => this.onSend(m)}/>
+      <Rooms room={this.state.room} items={this.state.rooms} onSelect={(r) => this.selectRoom(r)} />
+      <Chat items={this.state.messages} user={this.state.userName} onSend={(m) => this.send(m)} />
     </div>
   }
 }
