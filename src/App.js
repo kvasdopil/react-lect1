@@ -10,11 +10,9 @@ export default class App extends React.Component {
     super();
     this.state = {
       userName: 'Загадочный ловелас',
-      room: 'Общий чят',
-      rooms: ['Общий чят', 'Машинки', 'Котики', 'Голые женщины 18+', 'ТФКП'],
-      messages: [
-        {from: 'Вася', msg: 'Привет'}
-      ]
+      room: '',
+      rooms: [],
+      messages: []
     };
   }
 
@@ -22,6 +20,7 @@ export default class App extends React.Component {
   {
     this.server = new Server();
     this.server.onMessage = (f,c,m) => this.handleMessage(f,c,m);
+    this.server.onListChats = (l) => this.handleList(l);
   }
 
   send(msg)
@@ -33,10 +32,17 @@ export default class App extends React.Component {
   {
     this.setState({
       room,
-      messages: null
+      messages: []
     });
 
     this.server.getLog(room, (messages) => this.setState({messages}));
+  }
+
+  handleList(rooms)
+  {
+    console.log('rooms', rooms);
+    this.setState({rooms});
+    this.selectRoom(rooms[0]);
   }
 
   handleMessage(from, chat, msg)

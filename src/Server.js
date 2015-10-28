@@ -4,7 +4,8 @@ export default class Server
   {
     this.server = window.io('http://192.168.17.202:88');
     this.server.on('new', (m) => this.onMessage(m.from, m.root, m.msg));
-    this.server.on('log', (m) => this.onLog(m.room, m.log));
+    this.server.on('log', (l) => this.onLog(l));
+    this.server.on('list', (m) => this.onListChats(m));
 
     console.log('Server: Подключаюсь');
   }
@@ -25,12 +26,16 @@ export default class Server
     this.logcb = cb;
   }
 
-  onLog(room, log)
+  onLog(log)
   {
     if(!log)
       log = [];
 
     if(this.logcb)
       this.logcb(log);
+  }
+
+  onListChats(list)
+  {
   }
 }
