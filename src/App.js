@@ -8,8 +8,8 @@ export default class App extends React.Component {
     super();
     this.state = {
       userName: 'Загадочный ловелас',
-      room: 'Общий чат',
-      rooms: ['Общий чат', 'Вася', 'Петя', 'Маша', 'Ираида Петровна'],
+      room: 'Общий чят',
+      rooms: ['Общий чят', 'Машинки', 'Котики', 'Голые женщины 18+', 'ТФКП'],
       messages: [
         {from: 'Вася', msg: 'Привет'}
       ]
@@ -18,7 +18,7 @@ export default class App extends React.Component {
 
   onSend(msg)
   {
-    console.log('send: ', 'вася пупкин', 'Общий чат', msg);
+    console.log('send: ', this.state.userName, this.state.room, msg);
     this.handleMessage(this.state.userName, this.state.room, msg);
   }
 
