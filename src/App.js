@@ -2,6 +2,8 @@ import React from 'react';
 import Rooms from './components/Rooms'
 import Chat from './components/Chat'
 
+import Server from './Server';
+
 export default class App extends React.Component {
   constructor()
   {
@@ -16,10 +18,15 @@ export default class App extends React.Component {
     };
   }
 
+  componentDidMount()
+  {
+    this.server = new Server();
+    this.server.onMessage = (f,c,m) => this.handleMessage(f,c,m);
+  }
+
   onSend(msg)
   {
-    console.log('send: ', this.state.userName, this.state.room, msg);
-    this.handleMessage(this.state.userName, this.state.room, msg);
+    this.server.send(this.state.userName, this.state.room, msg);
   }
 
   handleMessage(from, chat, msg)
