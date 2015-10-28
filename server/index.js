@@ -1,4 +1,6 @@
-var io = require('socket.io')(88);
+var port = 8088;
+
+var io = require('socket.io')(port);
 
 var logs = {};
 var LIMIT = 8;
@@ -34,4 +36,4 @@ io.on('connection', function(socket) {
   console.log('connect');
 });
 
-console.log('listening on 0.0.0.0:88');
+console.log('listening on 0.0.0.0:' + port);

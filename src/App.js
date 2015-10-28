@@ -49,8 +49,13 @@ export default class App extends React.Component {
     this.selectRoom(rooms[0]);
   }
 
-  handleMessage(from, chat, msg)
+  handleMessage(from, room, msg)
   {
+    console.log(from, room, msg);
+    
+    if(room != this.state.room)
+      return;
+
     var messages = this.state.messages;
     messages.push({from, msg});
 

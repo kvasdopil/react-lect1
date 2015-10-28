@@ -2,8 +2,9 @@ export default class Server
 {
   constructor()
   {
-    this.server = window.io('http://192.168.17.202:88');
-    this.server.on('new', (m) => this.onMessage(m.from, m.root, m.msg));
+    this.server = window.io('http://'+document.location.hostname+':8088');
+
+    this.server.on('new', (m) => this.onMessage(m.from, m.room, m.msg));
     this.server.on('log', (l) => this.onLog(l));
     this.server.on('list', (m) => this.onListChats(m));
 
