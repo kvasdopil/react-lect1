@@ -3,30 +3,37 @@ import Rooms from './components/Rooms'
 import Chat from './components/Chat'
 
 export default class App extends React.Component {
-  onSend(msg)
+  constructor()
   {
-    console.log('send: ', 'вася пупкин', 'Общий чат', msg);
-  }
-
-  render() {
-    var data = {
+    super();
+    this.state = {
       userName: 'Загадочный ловелас',
       room: 'Общий чат',
       rooms: ['Общий чат', 'Вася', 'Петя', 'Маша', 'Ираида Петровна'],
       messages: [
-        {from: 'Вася', msg: 'Привет'},
-        {from: 'Вася', msg: 'Привет'},
-        {from: 'Ловелас', msg: 'Медвед'},
-        {from: 'Вася', msg: 'Привет'},
-        {from: 'Вася', msg: 'Привет'},
-        {from: 'Вася', msg: 'Привет'},
         {from: 'Вася', msg: 'Привет'}
       ]
     };
+  }
 
+  onSend(msg)
+  {
+    console.log('send: ', 'вася пупкин', 'Общий чат', msg);
+    this.handleMessage(this.state.userName, this.state.room, msg);
+  }
+
+  handleMessage(from, chat, msg)
+  {
+    var messages = this.state.messages;
+    messages.push({from, msg});
+
+    this.setState({messages});
+  }
+
+  render() {
     return <div id='app'>
-      <Rooms room={data.room} items={data.rooms} />
-      <Chat items={data.messages} user={data.userName} onSend={this.onSend}/>
+      <Rooms room={this.state.room} items={this.state.rooms} />
+      <Chat items={this.state.messages} user={this.state.userName} onSend={(m) => this.onSend(m)}/>
     </div>
   }
 }
