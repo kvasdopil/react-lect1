@@ -3,6 +3,11 @@ import Rooms from './components/Rooms'
 import Chat from './components/Chat'
 
 export default class App extends React.Component {
+  onSend(msg)
+  {
+    console.log('send: ', 'вася пупкин', 'Общий чат', msg);
+  }
+
   render() {
     var data = {
       userName: 'Загадочный ловелас',
@@ -21,7 +26,7 @@ export default class App extends React.Component {
 
     return <div id='app'>
       <Rooms room={data.room} items={data.rooms} />
-      <Chat items={data.messages} user={data.userName}/>
+      <Chat items={data.messages} user={data.userName} onSend={this.onSend}/>
     </div>
   }
 }
