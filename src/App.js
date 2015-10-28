@@ -1,6 +1,7 @@
 import React from 'react';
-import Rooms from './components/Rooms'
-import Chat from './components/Chat'
+import Rooms from './components/Rooms';
+import Chat from './components/Chat';
+import Login from './components/Login';
 
 import Server from './Server';
 
@@ -9,15 +10,17 @@ export default class App extends React.Component {
   {
     super();
     this.state = {
-      userName: 'Загадочный ловелас',
-      room: '',
+      userName: null,
+      room: null,
       rooms: [],
       messages: []
     };
   }
 
-  componentDidMount()
+  login(userName)
   {
+    this.setState({userName});
+
     this.server = new Server();
     this.server.onMessage = (f,c,m) => this.handleMessage(f,c,m);
     this.server.onListChats = (l) => this.handleList(l);
@@ -27,6 +30,7 @@ export default class App extends React.Component {
   {
     this.server.send(this.state.userName, this.state.room, msg);
   }
+
 
   selectRoom(room)
   {
@@ -54,6 +58,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    if(this.state.userName == null)
+      return <Login onLogin={(n) => this.login(n)} />
+
     return <div id='app'>
       <Rooms room={this.state.room} items={this.state.rooms} onSelect={(r) => this.selectRoom(r)} />
       <Chat items={this.state.messages} user={this.state.userName} onSend={(m) => this.send(m)} />
