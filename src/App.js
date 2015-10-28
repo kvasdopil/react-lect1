@@ -31,8 +31,12 @@ export default class App extends React.Component {
 
   selectRoom(room)
   {
-    console.log('room ', room);
-    this.setState({room});
+    this.setState({
+      room,
+      messages: null
+    });
+
+    this.server.getLog(room, (messages) => this.setState({messages}));
   }
 
   handleMessage(from, chat, msg)

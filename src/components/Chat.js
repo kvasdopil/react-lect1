@@ -9,10 +9,16 @@ export default class Chat extends React.Component {
     el.value = '';
   }
 
+  renderLine(msg)
+  {
+    return <p>{msg.from}: {msg.msg}</p>
+  }
+
   renderChat()
   {
     return <div style={{overflowY: 'auto', height: '300px'}}>
-      {this.props.items.map((msg) => <p>{msg.from}: {msg.msg}</p>)}
+      {(this.props.items == null) ?
+        <span>Загружаемся...</span> : this.props.items.map(this.renderLine)}
     </div>
   }
 
