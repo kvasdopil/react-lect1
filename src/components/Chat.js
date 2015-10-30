@@ -1,12 +1,17 @@
 import React from 'react';
 
 export default class Chat extends React.Component {
-  onSend()
+  send()
   {
     var el = document.getElementById('chatmsg');
     this.props.onSend(el.value);
 
     el.value = '';
+  }
+
+  logout()
+  {
+    this.props.onLogout();
   }
 
   renderChat()
@@ -22,8 +27,9 @@ export default class Chat extends React.Component {
   renderMsgBox()
   {
     return <div>
-      {this.props.user}:&nbsp;<input id='chatmsg' type="text" />
-      <button onClick={() => this.onSend()}>Отправить</button>
+      <button onClick={() => this.logout()}>{this.props.user}:</button>
+      <input id='chatmsg' type="text" />
+      <button onClick={() => this.send()}>Отправить</button>
     </div>
   }
 

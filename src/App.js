@@ -10,27 +10,29 @@ export default class App extends React.Component {
   {
     super();
     this.state = {
-      userName: null,
+      userName: 'Гость',
       room: null,
       rooms: [],
       messages: []
     };
   }
 
-  login(userName)
+  componentDidMount()
   {
-    this.setState({userName});
-
     this.server = new Server();
     this.server.onMessage = (f,c,m) => this.handleMessage(f,c,m);
     this.server.onListChats = (l) => this.handleList(l);
+  }
+
+  login(userName)
+  {
+    this.setState({userName});
   }
 
   send(msg)
   {
     this.server.send(this.state.userName, this.state.room, msg);
   }
-
 
   selectRoom(room)
   {
@@ -52,7 +54,7 @@ export default class App extends React.Component {
   handleMessage(from, room, msg)
   {
     console.log(from, room, msg);
-    
+
     if(room != this.state.room)
       return;
 
@@ -67,8 +69,13 @@ export default class App extends React.Component {
       return <Login onLogin={(n) => this.login(n)} />
 
     return <div id='app'>
-      <Rooms room={this.state.room} items={this.state.rooms} onSelect={(r) => this.selectRoom(r)} />
-      <Chat items={this.state.messages} user={this.state.userName} onSend={(m) => this.send(m)} />
+      <Rooms room={this.state.room}
+            items={this.state.rooms}
+            onSelect={(r) => this.selectRoom(r)} />
+      <Chat items={this.state.messages}
+            user={this.state.userName}
+            onSend={(m) => this.send(m)}
+            onLogout={() => this.login(null)}/>
     </div>
   }
 }
